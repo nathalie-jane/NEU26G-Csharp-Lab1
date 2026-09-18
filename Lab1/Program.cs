@@ -9,19 +9,29 @@ for (int startIndex = 0; startIndex < text.Length; startIndex++)
         // Search for matching digit
         for (int searchIndex = startIndex + 1; searchIndex < text.Length; searchIndex++)
         {
-            // Stop search at non-digit
+            // Stop at non-digit
             if (!char.IsDigit(text[searchIndex]))
             {
                 break;
             }
 
-            // Matching digit found
+            // Check for matching digit
             if (text[searchIndex] == text[startIndex])
             {
                 int segmentLength = (searchIndex - startIndex) + 1;
                 string numberSegment = text.Substring(startIndex, segmentLength);
 
-                Console.WriteLine(numberSegment); // Test output
+                string beforeSegment = text.Substring(0, startIndex);
+                string afterSegment = text.Substring(searchIndex + 1);
+
+                Console.Write(beforeSegment);
+
+                // Highlight matching segment
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(numberSegment);
+
+                Console.ResetColor();
+                Console.WriteLine(afterSegment);
 
                 break;
             }
