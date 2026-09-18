@@ -1,29 +1,31 @@
-﻿string text = "29535123p48723487597645723645"; // Test input
+﻿Console.Write("Enter text to search: ");
+string inputText = Console.ReadLine() ?? "";
+Console.WriteLine();
 
 long totalSum = 0; // Store total sum
 
 // Check each character
-for (int startIndex = 0; startIndex < text.Length; startIndex++)
+for (int startIndex = 0; startIndex < inputText.Length; startIndex++)
 {
     // Check for digit
-    if (char.IsDigit(text[startIndex]))
+    if (char.IsDigit(inputText[startIndex]))
     {
         // Search for matching digit
-        for (int searchIndex = startIndex + 1; searchIndex < text.Length; searchIndex++)
+        for (int searchIndex = startIndex + 1; searchIndex < inputText.Length; searchIndex++)
         {
             // Stop at non-digit
-            if (!char.IsDigit(text[searchIndex]))
+            if (!char.IsDigit(inputText[searchIndex]))
             {
                 break;
             }
 
             // Check for matching digit
-            if (text[searchIndex] == text[startIndex])
+            if (inputText[searchIndex] == inputText[startIndex])
             {
                 int segmentLength = (searchIndex - startIndex) + 1;
-                string numberSegment = text.Substring(startIndex, segmentLength);
+                string numberSegment = inputText.Substring(startIndex, segmentLength);
 
-                DisplayHighlightedSegment(text, numberSegment, startIndex, searchIndex);
+                DisplayHighlightedSegment(inputText, numberSegment, startIndex, searchIndex);
 
                 totalSum = AddSegmentToTotal(numberSegment, totalSum);
 
@@ -59,4 +61,4 @@ static long AddSegmentToTotal(string numberSegment, long totalSum)
 
 // Display total sum
 Console.WriteLine();
-Console.Write($"Total: {totalSum}");
+Console.WriteLine($"Total: {totalSum}");
