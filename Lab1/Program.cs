@@ -23,17 +23,7 @@ for (int startIndex = 0; startIndex < text.Length; startIndex++)
                 int segmentLength = (searchIndex - startIndex) + 1;
                 string numberSegment = text.Substring(startIndex, segmentLength);
 
-                string beforeSegment = text.Substring(0, startIndex);
-                string afterSegment = text.Substring(searchIndex + 1);
-
-                Console.Write(beforeSegment);
-
-                // Highlight matching segment
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write(numberSegment);
-
-                Console.ResetColor();
-                Console.WriteLine(afterSegment);
+                DisplayHighlightedSegment(text, numberSegment, startIndex, searchIndex);
 
                 // Convert segment and add to total
                 long segmentValue = long.Parse(numberSegment);
@@ -43,6 +33,22 @@ for (int startIndex = 0; startIndex < text.Length; startIndex++)
             }
         }
     }
+}
+
+// Helper method for highlighted output
+static void DisplayHighlightedSegment(string text, string numberSegment, int startIndex, int searchIndex)
+{
+    string beforeSegment = text.Substring(0, startIndex);
+    string afterSegment = text.Substring(searchIndex + 1);
+
+    Console.Write(beforeSegment);
+
+    // Highlight matching segment
+    Console.ForegroundColor = ConsoleColor.Cyan;
+    Console.Write(numberSegment);
+
+    Console.ResetColor();
+    Console.WriteLine(afterSegment);
 }
 
 // Display total sum
