@@ -1,5 +1,7 @@
 ﻿string text = "29535123p48723487597645723645"; // Test input
 
+long totalSum = 0; // Store total sum
+
 // Check each character
 for (int startIndex = 0; startIndex < text.Length; startIndex++)
 {
@@ -33,8 +35,16 @@ for (int startIndex = 0; startIndex < text.Length; startIndex++)
                 Console.ResetColor();
                 Console.WriteLine(afterSegment);
 
+                // Convert segment and add to total
+                long segmentValue = long.Parse(numberSegment);
+                totalSum += segmentValue;
+
                 break;
             }
         }
     }
 }
+
+// Display total sum
+Console.WriteLine();
+Console.Write($"Total: {totalSum}");
